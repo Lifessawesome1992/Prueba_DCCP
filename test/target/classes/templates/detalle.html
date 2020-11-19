@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:utext="${country}">...</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.22/datatables.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" crossorigin="anonymous"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.22/datatables.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+        $('#data').DataTable({
+            "pageLength": 50
+        });
+        });
+    </script>
+</head>
+<body class="bg-dark text-white container">
+    <h1 class="mb-5 text-center" th:utext="${country}"></h1>
+    <table id="data" class="display nowrap mt-5 table table-white" style="width:100%">
+        <thead>
+            <tr>
+                <th>Casos Confirmados</th>
+                <th>Muertes</th>
+                <th>Recuperados</th>
+                <th>Activos</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each ="post : ${detail}">
+                <td th:utext="${post.Confirmed}">...</td>
+                <td th:utext="${post.Deaths}">...</td>
+                <td th:utext="${post.Recovered}">...</td>
+                <td th:utext="${post.Active}">...</td>
+                <td th:utext="${post.Date}">...</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>País</th>
+                <th>Muertes Totales</th>
+                <th>Recuperados Totales</th>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>

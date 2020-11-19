@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Datos de casos COVID Mundiales</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.22/datatables.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" crossorigin="anonymous"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.22/datatables.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+        $('#data').DataTable({
+            "pageLength": 50
+        });
+        });
+        jump = (country) => {
+            window.location = "/detalle?c=" + country;
+        }
+    </script>
+</head>
+<body class="bg-dark text-white container">
+    <h1 class="mb-5 text-center">Datos de casos COVID Mundiales</h1>
+    <table id="data" class="display nowrap mt-5 table table-white" style="width:100%">
+        <thead>
+            <tr>
+                <th>País</th>
+                <th>Muertes Totales</th>
+                <th>Recuperados Totales</th>
+                <th>Detalle</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each ="post : ${casos}">
+                <td th:utext="${post.Country}">...</td>
+                <td th:utext="${post.TotalDeaths}">...</td>
+                <td th:utext="${post.TotalRecovered}">...</td>
+                <td><i class="fas fa-search" style="cursor:pointer" th:attr="onclick=|jump('${post.Country}')|" ></i></td> 
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>País</th>
+                <th>Muertes Totales</th>
+                <th>Recuperados Totales</th>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>
